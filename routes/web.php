@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ToDoListController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,13 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home', [
-        'task1' => "Cuci Baju"
-    ]);// view(nama file, [data yang dikirim ke file])
-});
+Route::get('/', [ToDoListController::class, 'home']);
+
+Route::post('/', [ToDoListController::class, 'Store']);
 
 Route::get('/about', function () {
     return view('welcome');
 });
+
 
