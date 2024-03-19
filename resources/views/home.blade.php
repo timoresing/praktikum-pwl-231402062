@@ -5,6 +5,7 @@
 
 {{-- content --}}
 <div class="flex justify-center mt-10 flex-col gap-10">
+  <form action="/" method="POST">
   @csrf
   @method('POST')
   {{-- input bar --}}
@@ -12,15 +13,16 @@
     <div class="label">
       <span class="label-text text-emerald-600">New Task</span>
     </div>
-    <input type="text" placeholder="Type here" class="input input-bordered input-success w-full max-w-lg" />
+    <input name="task" type="text" placeholder="Type here" class="input input-bordered input-success w-full max-w-lg" />
     <div class="label">
     </div>
     {{-- button add --}}
-    <button class="btn btn-success w-36 self-center rounded-full">Add</button>
+    <button type="submit" class="btn btn-success w-36 self-center rounded-full">Add</button>
     {{-- akhir button add --}}
   </label>
   {{-- akhir input bar --}}
-
+  </form>
+  
   {{-- task --}}
   <div class="flex flex-col gap-3">
     @foreach ($tasks as $task)
