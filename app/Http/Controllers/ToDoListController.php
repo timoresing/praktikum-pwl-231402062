@@ -2,22 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Task;
 use Illuminate\Http\Request;
 
 class ToDoListController extends Controller
 {
-    public function home()
+    public function index()
     {
-        $tasks = [
-            [
-                'task'    => 'Task1',
-                'tanggal' => '2022-03-21',
-            ],
-            [
-                'task'    => 'Task2',
-                'tanggal' => '2022-03-22',
-            ]
-        ];
+        $tasks = Task::all();
 
         return view('home', [
             'tasks' => $tasks,
@@ -26,24 +18,21 @@ class ToDoListController extends Controller
 
     public function store(Request $request)
     {
-        $tasks = [
+        $request->validate(
             [
-                'task'    => 'Task1',
-                'tanggal' => '2022-03-21',
+                'task' => 'required|min:5',
             ],
             [
-                'task'    => 'Task2',
-                'tanggal' => '2022-03-22',
-            ],
-        ];
+                'task.required' => 'Tugas harus diisi',
+                'task.min'      => 'Tugas minimal 5 karakter',
+            ]
+        );
 
-        $tasks[] = [
+        Task::create([
             'task'    => $request->task,
-            'tanggal' => '2024-03-14',
-        ];
-
-        return view('home', [
-            'tasks' => $tasks,
+            'tanggal' => NOW(),
         ]);
+
+        return redirect('/');
     }
 }

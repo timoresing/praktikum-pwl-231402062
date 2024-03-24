@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [ToDoListController::class, 'home']);
+Route::get('/', [ToDoListController::class, 'index']);
 
-Route::post('/', [ToDoListController::class, 'Store']);
+Route::post('/', [ToDoListController::class, 'store']);
 
 Route::get('/about', function () {
     return view('welcome');
