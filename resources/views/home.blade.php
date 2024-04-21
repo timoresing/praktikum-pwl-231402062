@@ -38,7 +38,7 @@
       </svg>
       <div class="flex flex-col">
         <span class="text-sm text-slate-400">{{ $task->tanggal }}</span>
-        <span class="text-xl font-bold">{{ $task->tasks }}</span>
+        <span class="text-xl font-bold">{{ $task->task }}</span>
       </div>
       <div>
         <div class="tooltip" data-tip="Detail">
