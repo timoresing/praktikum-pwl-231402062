@@ -7,7 +7,6 @@
 <div class="flex justify-center mt-10 flex-col gap-10">
   <form action="/" method="POST">
     @csrf
-    @method('POST')
     {{-- input bar --}}
     <label class="form-control w-full max-w-lg mx-auto">
       <div class="label">
@@ -42,13 +41,17 @@
       </div>
       <div>
         <div class="tooltip" data-tip="Detail">
-          <button class="btn btn-sm shadow-lg bg-base-200 rounded-full">View</button>
+          <a href="/detail/{{ $task->id }}" class="btn btn-sm shadow-lg bg-base-200 rounded-full">View</a>
         </div>
         <div class="tooltip" data-tip="Edit">
-          <button class="btn btn-sm shadow-lg bg-yellow-500 rounded-full">Edit</button>
+          <a href="/edit/{{ $task->id }}" class="btn btn-sm shadow-lg bg-yellow-500 rounded-full">Edit</a>
         </div>
         <div class="tooltip" data-tip="Selesai">
-          <button class="btn btn-sm btn-success rounded-full">Done</button>
+          <form action="/deleteTask/{{ $task->id }}" method="POST">
+            @method('delete')
+            @csrf
+            <button class="btn btn-sm btn-success rounded-full" onclick="return confirm('Have you done the task?')">Done</button>
+          </form>
         </div>
       </div>
     </div>

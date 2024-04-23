@@ -35,4 +35,47 @@ class ToDoListController extends Controller
 
         return redirect('/');
     }
+
+    public function deleteTask(Request $request)
+    {
+        Task::where('id', $request->id)->delete();
+
+        return redirect('/');
+    }
+
+    public function editTask(Request $request)
+    {
+        $task = Task::find($request->id);
+
+        return view('edit',[
+            'task' => $task
+        ]);
+    }
+
+    public function updateTask(Request $request)
+    {
+        $validation = $request->validate([
+            'task' => 'required|min:5',
+        ]);
+
+        Task::where('id', $request->id)->update([
+            'task' => $validation['task']
+        ]);
+
+        return redirect('/');
+    }
+
+    public function detailTask(Request $request)
+    {
+        $task = Task::find($request->id);
+
+        return view('detail',[
+            'task' => $task
+        ]);
+    }
+
+    public function showTask()
+    {
+        return redirect('/');
+    }
 }
